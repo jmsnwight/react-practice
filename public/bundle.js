@@ -49,19 +49,87 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
-	var Main = React.createClass({
-	  displayName: 'Main',
+	var Counter = React.createClass({
+		displayName: 'Counter',
 
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      'Hello World'
-	    );
-	  }
+		getInitialState: function getInitialState() {
+			return {
+				count: 0
+			};
+		},
+		incrementCount: function incrementCount() {
+			this.setState({
+				count: this.state.count + 1
+			});
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ 'class': 'my-component' },
+				React.createElement(
+					'h1',
+					null,
+					'Count: ',
+					this.state.count
+				),
+				React.createElement(
+					'button',
+					{ type: 'button', onClick: this.incrementCount },
+					'Increment'
+				)
+			);
+		}
 	});
 
-	ReactDOM.render(React.createElement(Main, null), document.getElementById('app'));
+	// Filtered list
+
+	var FilteredList = React.createClass({
+		displayName: 'FilteredList',
+
+		filterList: function filterList(event) {
+			var updatedList = this.state.initialItems;
+			updatedList = updatedList.filter(function (item) {
+				return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
+			});
+			this.setState({ items: updatedList });
+		},
+		getInitialState: function getInitialState() {
+			return {
+				initialItems: ['Rock', 'Country', 'Jazz', 'Pop', 'Blues', 'Alternative', 'Polka'],
+				items: []
+			};
+		},
+		componentWillMount: function componentWillMount() {
+			this.setState({ items: this.state.initialItems });
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'filter-list' },
+				React.createElement('input', { type: 'text', placeholder: 'Search', onChange: this.filterList }),
+				React.createElement(List, { items: this.state.items })
+			);
+		}
+	});
+	var List = React.createClass({
+		displayName: 'List',
+
+		render: function render() {
+			return React.createElement(
+				'ul',
+				null,
+				this.props.items.map(function (item) {
+					return React.createElement(
+						'li',
+						{ key: item },
+						item
+					);
+				})
+			);
+		}
+	});
+
+	ReactDOM.render(React.createElement(FilteredList, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
