@@ -8,12 +8,14 @@ app.get('/', function(req, res){
 
 // Data from the input emits function as msg back to the client side
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-   });
-  socket.on('nickname', function(name){
-  	io.emit('nickname', name);
-  });
+	socket.on('set nickname', function(name){
+		socket.set('nickname', name, function() { socket.emit('ready'); });
+		socket.on('msg', function () {
+			socket.get('nickname', function (name) {
+				io.emit('nickname', name);
+			});
+		});
+	});
 });
 
 http.listen(3000, function(){

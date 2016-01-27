@@ -1,0 +1,21 @@
+{
+  "name": "live-polling",
+  "version": "1.0.0",
+  "description": "An app that allows speakers to pull audience members",
+  "main": "app-server.js",
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "express": "^4.13.1",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "socket.io": "^1.4.4",
+    "socket.io-client": "^1.4.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "prestart": "webpack",
+    "start": "node app-server.js"
+  },
+  "author": "Jamison Wight",
+  "license": "MIT"
+}

@@ -35,16 +35,17 @@
       return false;
     });
 
-    var userName = $('#n').val();
 
-    socket.on('chat message', function(msg){
-      if(userName > 0) {
-        socket.on('nickname', function(name) {
-          
+    socket.on('connect', function() {
+      socket.emit('set nickname', function(name) {
+        $('#messages').append($('<h2>').text(name));
+      });
+      socket.on('ready', function() {
+        socket.emit('msg', function(msg) {
+          $('#messages').append($('<li>').text(msg));
         });
-      }
-
-      $('#messages').append($('<li>').text(msg));
+      });
+      
 
     });
      
