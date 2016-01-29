@@ -17,7 +17,7 @@ var routes = (
 	</Route>
 );
 
-
-	ReactDOM.render(<Router {...this.state}>{routes}</Router>, document.getElementById('react-container'));
+	
+	ReactDOM.render(<Router>{routes}</Router>, document.getElementById('react-container'));
 
 

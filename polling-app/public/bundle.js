@@ -16809,7 +16809,7 @@
 				'div',
 				null,
 				_react2.default.createElement(Header, { title: this.state.title, status: this.state.status }),
-				this.props.children
+				this.props.children && _react2.default.cloneElement(this.props.children, this.state)
 			);
 		}
 	});
@@ -16985,7 +16985,7 @@
 
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRouter.Router,
-		undefined.state,
+		null,
 		routes
 	), document.getElementById('react-container'));
 
