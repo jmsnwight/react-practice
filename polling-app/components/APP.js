@@ -12,7 +12,8 @@ var APP = React.createClass({
 	getInitialState() {
 		return {
 			status: 'disconnected',
-			title: ''
+			title: '',
+			dance: 'I like to dance!'
 		}
 	},
 
